@@ -59,13 +59,6 @@ Vagrant.configure(2) do |config|
     end
   end
 
-  #config.vm.provision "file", source: "~/.not_found", destination: ".not_found"
-  #config.vm.provision "file", source: "~/.gitconfig", destination: ".gitconfig"
-  #config.vm.provision "file", source: "~/.git_global_ignores", destination: "~"
-  #config.vm.provision "file", source: "~/.bash_aliases", destination: ".bash_aliases"
-  #config.vm.provision "file", source: "~/.vimrc", destination: ".vimrc"
-  #config.vm.provision "file", source: "~/.vim", destination: "~"
-  #config.vm.provision "file", source: "~/.ssh", destination: "~"
 
   # Machines
   config.vm.define "trusty", autostart:false do |c|
