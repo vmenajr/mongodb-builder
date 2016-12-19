@@ -11,7 +11,7 @@ Box can build up to v3.2 at the moment.  v3.4 requires gcc/g++ > 5.3.
 Box can build up to v3.4
 
 ## Build steps
-The source is placed under `~vagrant/mongo` by default with the master branch checked out.  Prior to building make sure you checkout the source is at the proper level
+The source is placed under `~vagrant/mongo` by default with the master branch checked out.  Prior to building make sure you checkout the source at the proper level
 
 e.g. Build latest v3.4 mongod **only**
 ```
