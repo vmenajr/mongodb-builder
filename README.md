@@ -4,7 +4,7 @@ Vagrant box builders for mongodb
 **Note:** None of the boxes come up automatically on a `vagrant up` to avoid tons of machines getting instantiated at the same time.
 
 ## Required vagrant plugins
-1. vagrant-reload: Restarts the box after upgrading. Not **technically** necessary but sometimes I've seen weird issues if you don't reload and this plugin make sit a no-brainer.
+1. vagrant-reload: Restarts the box after upgrading. Not **technically** necessary but sometimes I've seen weird issues if you don't reload and this plugin makes it a no-brainer.
 
 ###
 ```
