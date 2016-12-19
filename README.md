@@ -3,6 +3,14 @@ Vagrant box builders for mongodb
 
 **Note:** None of the boxes come up automatically on a `vagrant up` to avoid tons of machines getting instantiated at the same time.
 
+## Required vagrant plugins
+1. vagrant-reload: Restarts the box after upgrading. Not **technically** necessary but sometimes I've seen weird issues if you don't reload and this plugin make sit a no-brainer.
+
+###
+```
+vagrant plugin install <name>
+```
+
 ## Boxes
 1. Centos-72 (centos72)
 Box can build up to v3.2 at the moment.  v3.4 requires gcc/g++ > 5.3.
