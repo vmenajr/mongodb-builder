@@ -30,7 +30,7 @@ echo "Installing to ${PREFIX}..."
 make install-strip
 
 # gcc installs .so files in /usr/local/lib64...
-echo "${PREFIX}/lib64" > /etc/ld.so.conf.d/local-lib64.conf
+echo "${PREFIX}/lib64" > /etc/ld.so.conf.d/gcc-${GCC_VERSION}-lib64.conf
 ldconfig -v || abend "Failed to rebuild ld cache"
 
 # Install alternatives
