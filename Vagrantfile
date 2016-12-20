@@ -67,9 +67,10 @@ Vagrant.configure(2) do |config|
       echo "Install dependencies"
       apt-get -y update
       apt-get -y upgrade
-      apt-get -y install build-essential tree vim git git-sh htop scons
+      apt-get -y install build-essential tree vim git htop scons
     SHELL
-    c.vm.provision "shell", name: "Install-g++-5", path: "provision/ubuntu/install-g++-5.sh"
+    c.vm.provision "shell", name: "Install git-sh", path: "provision/install-git-shell.sh"
+    c.vm.provision "shell", name: "Install g++-5", path: "provision/ubuntu/install-g++-5.sh"
     c.vm.provision "shell", name: "Clone MongoDB", path: "provision/clone-mongodb.sh"
     c.vm.provision "shell", name: "Personlize", path: "provision/personalize.sh"
     c.vm.provision :reload
@@ -81,8 +82,9 @@ Vagrant.configure(2) do |config|
       yum -y install epel-release
       yum -y update
       yum -y groupinstall "Development Tools"
-      yum -y install vim tree git git-sh scons
+      yum -y install vim tree git scons
     SHELL
+    c.vm.provision "shell", name: "Install git-sh", path: "provision/install-git-shell.sh"
     c.vm.provision "shell", name: "Download GCC 5.4", path: "provision/centos/download-gcc.sh", args: ["5.4.0"]
     c.vm.provision "shell", name: "Clone MongoDB", path: "provision/clone-mongodb.sh"
     c.vm.provision "shell", name: "Personlize", path: "provision/personalize.sh"
