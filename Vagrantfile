@@ -83,6 +83,7 @@ Vagrant.configure(2) do |config|
       yum -y groupinstall "Development Tools"
       yum -y install vim tree git git-sh scons
     SHELL
+    c.vm.provision "shell", name: "Download GCC 5.4", path: "download-gcc.sh", args: ["5.4.0"]
     c.vm.provision "shell", name: "Clone MongoDB", path: "clone-mongodb.sh"
     c.vm.provision "shell", name: "Personlize", path: "personalize.sh"
     c.vm.provision :reload
