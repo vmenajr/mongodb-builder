@@ -19,7 +19,7 @@ Vagrant.configure(2) do |config|
   # Provider settings
   config.vm.provider "virtualbox" do |v|
     #v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-    v.memory=1024
+    v.memory=2048
     v.cpus=2
     # VirtualBox auto-guest addition rebuild
     if Vagrant.has_plugin?("vagrant-vbguest")
@@ -28,7 +28,7 @@ Vagrant.configure(2) do |config|
   end
   config.vm.provider "parallels" do |v|
     v.update_guest_tools=true
-    v.memory=1024
+    v.memory=2048
     v.cpus=2
   end
 

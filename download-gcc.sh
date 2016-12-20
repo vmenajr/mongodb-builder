@@ -1,5 +1,6 @@
 #!/bin/bash
 GCC_VERSION="${1:-6.2.0}"
+SRC=/usr/src/gcc/${GCC_VERSION}
 
 function abend() {
   echo "Abend: $@"
@@ -39,32 +40,15 @@ curl -fSL "http://ftpmirror.gnu.org/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.bz
 gpg --batch --verify gcc.tar.bz2.sig gcc.tar.bz2 || abend "Failed to verify gcc download signature"
 
 # Extract to usr/src
-mkdir -p /usr/src/gcc
-tar -xf gcc.tar.bz2 -C /usr/src/gcc --strip-components=1 || abend "Failed extracting to /usr/src/gcc"
+mkdir -p ${SRC}
+tar -xf gcc.tar.bz2 -C ${SRC} --strip-components=1 || abend "Failed extracting to ${SRC}"
 rm gcc.tar.bz2* || abend "Cannot remove gcc tar files"
 
 # Download dependencies
-cd /usr/src/gcc || abend "Cannot enter gcc folder in usr"
+cd ${SRC} || abend "Cannot enter ${SRC}"
 ./contrib/download_prerequisites || abend "Failed to download dependencies"
 rm *.tar.* || abend "Failed to remove dependency tar files"
 
-# Build temporary folder
-dir="$(mktemp -d)" || abend "Error creating a temporary build folder"
-cd "$dir" || abend "Cannot enter $dir"
-/usr/src/gcc/configure --disable-multilib --enable-languages=c,c++ || abend "Cannot configure build"
-make -j"$(nproc)" || abend "Build failed"
-#make install-strip
-#cd ..
-#rm -rf "$dir"
-
-# gcc installs .so files in /usr/local/lib64...
-#echo '/usr/local/lib64' > /etc/ld.so.conf.d/local-lib64.conf
-#ldconfig -v || abend "Failed to rebuild ld cache"
-
-# ensure that alternatives are pointing to the new compiler and that old one is no longer used
-#dpkg-divert --divert /usr/bin/gcc.orig --rename /usr/bin/gcc
-#dpkg-divert --divert /usr/bin/g++.orig --rename /usr/bin/g++
-#update-alternatives --install /usr/bin/cc cc /usr/local/bin/gcc 999
-
 echo "Success"
+echo
 
